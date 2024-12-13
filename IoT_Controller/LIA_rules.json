@@ -1,0 +1,57 @@
+[          
+               {
+                        "conditions":[
+                                {"topic":"cage/system", "comparison":"==", "value":"on"} 
+                        ],
+
+                        "action":{"message":"Toggle Switch On. Power system. Sensors ON", "topic":"cage/system", "value":"on"}
+               },
+               {
+                        "conditions":[
+                                {"topic":"cage/system", "comparison":"==", "value":"off"} 
+                        ],
+
+                        "action":{"message": "Toggle switch off. Shutdown system.  ", "topic":"cage/nighttime", "value":"on"}
+               },
+
+
+               {
+                        "conditions":[
+                                {"topic":"cage/temphot", "comparison":">", "value":31}, 
+                        ],
+
+                        "action":{"message":"it's too Hot, turn off the HeatLamp, Red Light On", "topic":"cage/temphot", "value":"on"}
+               },
+               {
+                        "conditions":[
+                                {"topic":"cage/tempnorm", "comparison":">", "value":27} 
+                        ],
+
+                        "action":{"message":"Optimal temperature. Green Light On", "topic":"cage/tempnorm", "value":"on"}
+               },
+               {
+                        "conditions":[
+                                {"topic":"cage/tempcold", "comparison":"<", "value":27}, 
+                        ],
+
+                        "action":{"message":"it's too Cold, turn on the HeatLamp, Blue Light On", "topic":"cage/tempcold", "value":"on"}
+               },
+               {
+                        "conditions":[
+                                {"topic":"cage/nighttime", "comparison":"<", "value":500} 
+                        ],
+
+                        "action":{"message":"Night time, environment light low. White Light On", "topic":"cage/nighttime", "value":"on"}
+               },
+               {
+                        "conditions":[
+                                {"topic":"cage/daytime", "comparison":">", "value":501} 
+                        ],
+
+                        "action":{"message":"Day time, environment light high. White Light off", "topic":"cage/daytime", "value":"off"}
+               }
+
+
+
+         
+         ]

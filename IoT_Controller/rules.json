@@ -1,0 +1,95 @@
+[
+    {
+        "conditions": [
+            {"topic": "cage/system", "comparison": "==", "value": 1}
+        ],
+        "actions": [
+            {"message": "Toggle Switch On. Power system. Sensors ON", "topic": "cage/system", "value": "on"}
+        ]
+    },
+    {
+        "conditions": [
+            {"topic": "cage/system", "comparison": "==", "value": 0}
+        ],
+        "actions": [
+            {"message": "Toggle switch off. Shutdown system.", "topic": "cage/system", "value": "off"}
+        ]
+    },
+    {
+        "conditions": [
+            {"topic": "cage/system", "comparison": "==", "value": 1},
+            {"topic": "room/temperature", "comparison": "<", "value": 24}
+        ],
+<<<<<<< HEAD
+        "actions": [
+            {"message": "It's too cold. Turn on Heat Lamp and Blue Light.", "topic": "cage/tempcold", "value": "on"},
+            {"message": "Turn on the Heater.", "topic": "cage/heater", "value": "on"},
+            {"message": "Turn on the fan motor.", "topic": "cage/fan", "value": "off"},
+            {"message": "Turn off Green Light (Normal Temperature).", "topic": "cage/tempnorm", "value": "off"}
+        ]
+    },
+    {
+        "conditions": [
+            {"topic": "cage/system", "comparison": "==", "value": 1},
+            {"topic": "room/temperature", "comparison": ">", "value": 23},
+            {"topic": "room/temperature", "comparison": "<", "value": 27}
+        ],
+        "actions": [
+=======
+        "action": [
+            {"message": "It's too cold. Turn on Heat Lamp and Blue Light.", "topic": "cage/tempcold", "value": "on"},
+            {"message": "Turn on the Heater.", "topic": "cage/heater", "value": "on"},
+            {"message": "Turn on the Indicator Light.", "topic": "cage/indicator", "value": "on"},
+            {"message": "Turn off Green Light (Normal Temperature).", "topic": "cage/tempnorm", "value": "off"}
+       ]
+    },
+    {
+        "conditions": [
+            {"topic": "room/temperature", "comparison": ">", "value": 23},
+            {"topic": "room/temperature", "comparison": "<", "value": 27}
+        ],
+        "action": [
+>>>>>>> bcfb026574eff83115a45f0136f11423dff09ded
+            {"message": "Optimal temperature. Green Light On.", "topic": "cage/tempnorm", "value": "on"},
+            {"message": "Turn off Blue Light (Too Cold Indicator).", "topic": "cage/tempcold", "value": "off"},
+            {"message": "Turn off the Heater.", "topic": "cage/heater", "value": "off"},
+            {"message": "Turn off Red Light (Too Hot Indicator).", "topic": "cage/temphot", "value": "off"}
+        ]
+    },
+    {
+        "conditions": [
+<<<<<<< HEAD
+            {"topic": "cage/system", "comparison": "==", "value": 1},
+            {"topic": "room/temperature", "comparison": ">", "value": 27}
+        ],
+        "actions": [
+            {"message": "It's too hot. Turn on Red Light.", "topic": "cage/temphot", "value": "on"},
+            {"message": "Turn off Green Light (Normal Temperature).", "topic": "cage/tempnorm", "value": "off"},
+            {"message": "Turn off the Heater.", "topic": "cage/heater", "value": "off"},
+            {"message": "Turn off the fan motor.", "topic": "cage/fan", "value": "on"}
+=======
+            {"topic": "room/temperature", "comparison": ">", "value": 27}
+        ],
+        "action": [
+            {"message": "It's too hot. Turn on Red Light.", "topic": "cage/temphot", "value": "on"},
+            {"message": "Turn off Green Light (Normal Temperature).", "topic": "cage/tempnorm", "value": "off"},
+            {"message": "Turn off the Heater.", "topic": "cage/heater", "value": "off"},
+            {"message": "Turn off the Indicator Light.", "topic": "cage/indicator", "value": "off"}
+>>>>>>> bcfb026574eff83115a45f0136f11423dff09ded
+       ]
+    },
+    {
+        "conditions": [
+            {"topic": "cage/system", "comparison": "==", "value": 1},
+            {"topic": "room/lighting", "comparison": "<", "value": 2000}
+        ],
+        "actions": [{"message": "Night time. Environment light low. White Light On.", "topic": "cage/nighttime", "value": "on"}]
+    },
+    {
+        "conditions": [
+            {"topic": "cage/system", "comparison": "==", "value": 1},
+            {"topic": "room/lighting", "comparison": ">", "value": 2001}
+        ],
+        "actions": [{"message": "Day time. Environment light high. White Light Off.", "topic": "cage/nighttime", "value": "off"}]
+    }
+]
