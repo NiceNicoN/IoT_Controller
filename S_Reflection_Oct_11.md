@@ -1,10 +1,10 @@
 # Reflection - IoT Controller
 
-## What you have learned: 
+## What I have learned: 
 
 At this stage, we learned to implement condition-based rules in an IoT system using Python code and the MQTT broker. This has given us the capability to define specific actions triggered by incoming messages, such as changeing the state of the temperature  by turning the AC __`ON`__ or __`OFF`__. In addition to that, I gained experience in writing comparison logic and ensuring the system automatically responds based on the predefined conditions.
 
-## What you believe you need to improve: 
+## What I believe I need to improve: 
 
 I want to improve my control upon the more complicated rule sets. The current implementation works for simple conditions, but I would like to add the conditions that require a more complicated logic, such as multiple requirements triggering a single action. Debugging the logic behind message handling and actions triggered by different topics could also be more efficient.
 I want to understand the syntax better? I often confuse these symnols `<` `>`.
@@ -13,7 +13,7 @@ I want to understand the syntax better? I often confuse these symnols `<` `>`.
 
 Providing more detailed guidance on the structure of IoT rules, along with examples of advanced MQTT workflows, would be very helpful. A tutorial focused on efficiently testing IoT systems in real-time, particularly for handling message delays or errors, could have significantly sped up the process.
 
-## What you could have done to make the learning easier: 
+## What I could have done to make the learning easier: 
 
 I could have better prepared by researching the design of condition-based systems in IoT beforehand, which might have reduced some of the trial and error during the coding process. Additionally, experimenting with more loaded use cases and testing a broader range of inputs and outputs exemples would have made the implementation smoother.
 
