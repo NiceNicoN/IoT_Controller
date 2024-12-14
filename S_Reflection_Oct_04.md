@@ -1,8 +1,8 @@
-## What you have learned: 
+## What I have learned: 
 
 To recap what we have done so far, we have learned to set up and configure an MQTT client in Python using the paho-mqtt library. I now understand how to connect to the MQTT message broker, and how to use the Publish-Subscribe Model to subscribe to topics and to process the incoming published messages. As we do more of these labs, I feel more confident programing, developing code, and understanding and troubleshooting the basic errors that can occur in Python, particularly when working with various types of message payloads.
 
-## What you believe you need to improve: 
+## What I believe I need to improve: 
 
 I want to enhance my understanding of efficiently structuring callbacks and managing high volumes of messages. I also aim to improve my ability to understand and develop better more compex MQTT topics in order to work with larger data sets. Gaining a deeper familiarity with MQTT protocols and message flow will be crucial for scaling the system as the project evolves.
 How to understand the syntax better? I often confuse these symnols `<` `>`.
@@ -13,7 +13,7 @@ How to understand the syntax better? I often confuse these symnols `<` `>`.
 * I also want a better understanding of how we should chose our topics.
 * Maybe next year it would be a good idea to also develop a log/chart of troubleshooting protocols.
 
-## What you could have done to make the learning easier: 
+## What I could have done to make the learning easier: 
 
 * Haveving my RPI with me to code along with everyone else would have deffinetly helped me develop a better memory of the most commonly used functions and develop my motor skills.
 * I should do more proactive reasearch and studying. Reviewing more background material on MQTT communication on my own would definetlly do me favors.
