@@ -121,5 +121,6 @@ Here is a comprehensive list of objectives I bielieve we need to achive in order
 * **Idea:** We can 3d print parts for our project!
 * Add a flip switch. Hardware and Software.
 * We must update our schematic!
+* Obtain a miniUSB cable capable of transferring DATA.
 
 
