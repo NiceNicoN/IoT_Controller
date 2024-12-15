@@ -27,19 +27,19 @@ I also think that teamwork is great! Even though not everyone has their RPIs, we
 # Linux and Python Commands Learned:
 
 ## Linux Commands:
-`sudo apt install mosquitto mosquitto-clients` : This command installs the Mosquitto MQTT broker and client tools on the Raspberry Pi, allowing for local MQTT communication.
+`sudo apt install mosquitto mosquitto-clients` - This command installs the Mosquitto MQTT broker and client tools on the Raspberry Pi, allowing for local MQTT communication.
       
-`systemctl start mosquitto` : Starts the Mosquitto MQTT broker service, enabling the system to handle MQTT messaging.
+`systemctl start mosquitto` - Starts the Mosquitto MQTT broker service, enabling the system to handle MQTT messaging.
 
 ## Python Commands (from the code):
-`import paho.mqtt.client as mqtt` : Imports the Paho MQTT client, which is used to manage MQTT communication.
+`import paho.mqtt.client as mqtt` - Imports the Paho MQTT client, which is used to manage MQTT communication.
 
-`mqtt.Client()` : Creates a new MQTT client instance to send and receive messages.
+`mqtt.Client()` - Creates a new MQTT client instance to send and receive messages.
 
 `client.on_message = IOT_Controller.on_message` : Assigns a callback function (on_message) to handle incoming messages. By using `IOT_Controller.on_message`, I am referencing a method defined at the class level, rather than an instance-specific method. This is a direct reference to the method `on_message` within the `IOT_Controller class`.
 
-`client.connect("localhost", 1883)` : Connects the client to the local MQTT broker running on port 1883.
+`client.connect("localhost", 1883)` - Connects the client to the local MQTT broker running on port 1883.
 
-`client.subscribe("**")` : Subscribes to all topics (using wildcard **), enabling the controller to receive messages on any topic.
+`client.subscribe("**")` - Subscribes to all topics (using wildcard **), enabling the controller to receive messages on any topic.
 
-`client.loop_forever()` : Keeps the client running in an infinite loop to continuously listen for and process messages.
+`client.loop_forever()` - Keeps the client running in an infinite loop to continuously listen for and process messages.
