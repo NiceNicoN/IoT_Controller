@@ -1,0 +1,13 @@
+[Unit]
+Description=IOT Controller
+After=network.target
+
+[Service]
+ExecStart=/home/student11/examples/IOT_Controller/IoT/bin/python /home/student11/examples/IOT_Controller/LIA.py
+WorkingDirectory=/home/student11/examples/IOT_Controller/
+Restart=always
+User=student11
+
+[Install]
+WantedBy=multi-user.target
+
