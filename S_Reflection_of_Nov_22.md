@@ -53,70 +53,113 @@ Small errors in service files, such as typos in file paths or incorrect `ExecSta
 
 ## Linux Commands:
 
-* `sudo nano /etc/systemd/system/IoT_Controller.service` - Opens the Nano text editor with root privileges to edit the service file.
-* `sudo systemctl daemon-reload` - Reloads `systemd` to recognize changes made to service files. 
-* `sudo systemctl enable IoT_Controller.service` - Enables the IoT Controller service to start automatically at boot.
-* `sudo systemctl start IoT_Controller.service` - Starts the IoT Controller service manually without rebooting.
-* `sudo systemctl status IoT_Controller.service` - Checks the status of the service, including logs and errors.
-* `sudo apt-get install python3-matplotlib` - Installs the `matplotlib` package system-wide for Python.
+* Opens the Nano text editor with root privileges to edit the service file.
+```
+sudo nano /etc/systemd/system/IoT_Controller.service
+```
+* Reloads `systemd` to recognize changes made to service files.
+```
+sudo systemctl daemon-reload
+```
+* Enables the IoT Controller service to start automatically at boot.
+```
+sudo systemctl enable IoT_Controller.service
+```
+* Starts the IoT Controller service manually without rebooting.
+```
+sudo systemctl start IoT_Controller.service
+```
+* Checks the status of the service, including logs and errors.
+```
+sudo systemctl status IoT_Controller.service
+```
+* Installs the `matplotlib` package system-wide for Python.
+```
+sudo apt-get install python3-matplotlib
+```
 
 
 ## Python Commands (from the updated code):
 
-* `ExecStart=/home/username/IoT_Controller/IoT/bin/python /home/username/IoT_Controller/IoT_Controller.py` - Specifies the command to execute the `IoT_Controller.py` script using the Python interpreter from a virtual environment.
-* `WorkingDirectory=/home/username/IoT_Controller/` - Sets the working directory for the script execution.
-* `Restart=always` - Configures the service to restart automatically if it crashes or stops unexpectedly.
-* `User=username` - Sets the user under which the service runs to manage permissions and secure the execution environment. 
-
-
+* Specifies the command to execute the `IoT_Controller.py` script using the Python interpreter from a virtual environment.
+```
+ExecStart=/home/username/IoT_Controller/IoT/bin/python/home/username/IoT_Controller/IoT_Controller.py
+```
+* Sets the working directory for the script execution.
+```
+WorkingDirectory=/home/username/IoT_Controller/
+```
+* Configures the service to restart automatically if it crashes or stops unexpectedly.
+```
+Restart=always
+```
+* Sets the user under which the service runs to manage permissions and secure the execution environment. 
+```
+User=username
+```
 
 ##### These commands are crucial in setting up, running, and debugging the IoT system.
 
-# About the LIA: DuckPen - Heating System - IoT Project
+# Final LIA Reflection: DuckPen - Heating System - IoT Project
 
-## Progress so Far
-We have successfully implemented the following features:
+## Project Overview
+In this project, we built an IoT-based control system using an ESP32 microcontroller, the MQTT protocol, and a variety of sensors and actuators. The system was designed to monitor environmental parameters such as temperature and light intensity, and to control devices like heaters and fans accordingly. The primary goal was to ensure reliable communication between components and enable real-time device control using MQTT.
 
-#### ESP32 Integration
+## Successes and Achievements
 
-* The __ESP32__ reads temperature and light data using a DHT11 sensor and a photocell sensor.
-* LEDs indicate system states: red (high temperature), green (optimal temperature), blue (cold temperature), and yellow (heater activity).
+### Demonstration
+We have successfully implemented and demostrated the following features:
 
-#### MQTT Communication
+#### System Integration
+Integrating the ESP32 with MQTT was a significant accomplishment. The system now collects environmental data, processes it, and responds to remote commands in real time. This integration is the backbone of the project, enabling seamless communication between devices and users.
 
-* The ESP32 communicates with the MQTT broker using the PubSubClient library.
-* Topics include:
-  * Temperature states: cage/temphot, cage/tempnorm, cage/tempcold.
-  * Light level: cage/nighttime.
-  * Heater control: cage/heater.
+#### Remote Device Control
+A major success was achieving remote control of actuators via MQTT. By publishing messages to topics like `mqtt_hot_topic` and `mqtt_cold_topic`, we could activate or deactivate the heater and fan. This enabled real-time system feedback, making it interactive and user-friendly.
 
-#### Automation and Interactivity
-* Automated responses are triggered based on MQTT messages:
-  * LEDs toggle based on MQTT messages.
-  * The heater is controlled via MQTT commands, with visual feedback from a yellow LED.
-* Sensor data is periodically published to relevant topics, ensuring real-time updates.
+#### Continuous Data Monitoring
+We implemented a periodic data publishing mechanism that sent sensor readings every three seconds. This provided a steady stream of information about temperature, light levels, and system status, offering valuable insights for system optimization.
 
+## Areas for Improvement
+#### Error Handling and Robustness
+While the system performs well under normal conditions, it could be improved with better error handling. Adding validations for extreme sensor readings and implementing fail-safes like watchdog timers for MQTT reconnection would enhance its robustness.
 
-#### Challenges Encountered
+#### Security Enhancements
+Currently, MQTT communication lacks encryption, making it vulnerable to potential breaches. Adding TLS (Transport Layer Security) would secure data transmission and improve system reliability for real-world applications.
 
-* Wi-Fi and Network Issues: Due to the restrictive school Wifi network, we had difficulty connecting the ESP32. Resolved by switching to the teacher's less restrictive network.
-* Sensor Calibration: Adjusted thresholds and added delays for accurate readings.
-* MQTT Debugging: Implemented reconnection logic to address intermittent disconnections.
+#### Scalability
+The system is currently designed for a limited number of sensors and actuators. Scaling up will require more sophisticated control logic, such as event-driven programming or advanced state management, to maintain performance and usability.
 
-#### Areas for Improvement
+## Teamwork and Collaboration
+Working as a team was an enriching experience. Each member brought unique skills, enabling us to address challenges effectively and deliver a functional, well-rounded system.
 
-* Sensor Efficiency: Upgrade to more accurate sensors like the DHT22.
-* Code Optimization: Separate code into modular components for better maintainability.
-* Scalability: Expand to manage multiple cages with a hierarchical topic structure.
+#### Task Division
+We divided tasks based on individual strengths: some focused on hardware integration and sensor handling, while others worked on MQTT broker setup and communication. This parallel approach sped up development and ensured efficient progress across all areas.
 
-#### Lessons Learned
+#### Communication and Documentation
+Regular team meetings helped address challenges and make critical design decisions. We documented progress in shared files, ensuring everyone stayed informed and redundancy was avoided.
 
-* Technical Skills: Enhanced understanding of embedded systems and networking.
-* Problem-Solving: Debugging taught persistence and systematic approaches.
-* Collaboration: Effective teamwork proved crucial in overcoming challenges.
+#### Collaborative Troubleshooting
+Debugging was a collective effort. Challenges like MQTT connectivity or actuator control were resolved through brainstorming and teamwork, which not only improved the system but also deepened our understanding of IoT technologies.
 
-#### Next Lab
+For future projects, we aim to incorporate more structured planning and time management to further streamline collaboration.
 
-* **Finalize** testing on a home network and tweek code accordingly.
-* **Document** the system by creating a user manual and technical report.
-* Prepare a **demonstration** showcasing real-time MQTT communication and system responsiveness.
+## Learning Experience
+This project provided valuable insights into IoT systems, particularly in sensor integration, real-time communication, and actuator control. Key takeaways include:
+
+* Setting up and utilizing MQTT for efficient device communication.
+* Processing sensor data and responding to real-time environmental changes.
+* Addressing connectivity and reliability challenges with ESP32 and MQTT.
+* Refactoring code to manage increasing system complexity.
+
+Collaborating with the team also enhanced both my technical expertise and interpersonal skills, allowing us to learn from one another’s strengths.
+
+## Future Enhancements
+Looking ahead, we plan to:
+
+* **Integrate Cloud Platforms:** Using services like AWS or Google Cloud for centralized monitoring and control, enabling remote access from anywhere.
+* **Develop a Mobile App:** Creating a mobile interface for easier and more intuitive system control.
+* **Incorporate Machine Learning:** Adding predictive capabilities to optimize system performance based on trends in environmental data.
+
+## Conclusion
+This project was an excellent opportunity to apply IoT concepts in a practical setting. By integrating the ESP32 with MQTT and various sensors, we created a functional, interactive system. The challenges we faced helped us grow both technically and as a team, and the system’s scalability and adaptability offer exciting potential for future enhancements.
+
