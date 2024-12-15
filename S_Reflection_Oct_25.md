@@ -41,3 +41,10 @@ I also think that teamwork is great! Even though not everyone has their RPIs, we
 
 ##### These commands are crucial in setting up, running, and debugging the IoT system.
 
+## About the LIA:
+
+As part of my contribution to the LIA Project, I started developing the Arduino code for our IoT system. I was able to develop a working prototype for the ESP32. I learned about the callback function for Arduino and how to implement it into the code. The callback function proved itself crucial since we wanted to control our physical actuators with the ESP32 with the orders recieved from the MQTT broker. All in all, I really liked this expirience. I felt usefull to the team and proud to put in tangible work into our project.
+
+
+
+
