@@ -123,4 +123,6 @@ Here is a comprehensive list of objectives I bielieve we need to achive in order
 * We must update our schematic!
 * Obtain a miniUSB cable capable of transferring DATA.
 
-
+## Some Callenges we faced:
+* __Photocell Sensor Accuracy:__ The photocell sensor had inconsistent readings under different lighting conditions. We addressed this by testing various setups and analyzing the data in real-time using the Arduino serial monitor.
+* __Network Limitations:__ Testing was difficult without the teacher's Wi-Fi modem since the school’s Wi-Fi security blocked MQTT connections.
