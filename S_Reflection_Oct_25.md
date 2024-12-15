@@ -27,9 +27,9 @@ I also think that teamwork is great! Even though not everyone has their RPIs, we
 ## Linux Commands:
 `mosquitto` - Starts the MQTT broker.
 
-`mosquitto_sub -h localhost -t "#" -v`: Subscribes to all MQTT topics on the local broker, helping to monitor messages in real time.
+`mosquitto_sub` - Subscribes to an MQTT topic to receive messages.
 
-`mosquitto_pub -h localhost -t "topic" -m "message"`: Publishes an MQTT message to a specific topic, simulating a sensor or device.
+`mosquitto_pub` - Publishes messages to a specified MQTT topic.
 
 ## Python Commands (from the updated code):
 
@@ -37,7 +37,7 @@ I also think that teamwork is great! Even though not everyone has their RPIs, we
 
 `.append()` - Adds entries to lists. Here, it allows us to log new messages in the message_log.
 
-`try...except`: Used for error handling when parsing MQTT messages, ensuring that the system doesn’t crash if unexpected data is received.
+`try...except` - Used for error handling when parsing MQTT messages, ensuring that the system doesn’t crash if unexpected data is received.
 
 ##### These commands are crucial in setting up, running, and debugging the IoT system.
 
