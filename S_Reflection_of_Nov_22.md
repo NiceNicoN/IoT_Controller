@@ -1,126 +1,72 @@
-# Reflection - Durring the Lab - IoT Controller - Lab 8
+# Reflection - Lab 9 - IoT System Automated Startup
 
 ## What we have learned: 
 
-__Topic-Specific Learning__
+#### Topic-Specific Learning
+This lab introduced me to `systemd` as a tool for automating IoT system startups on Raspberry Pi devices. I learned how to create, configure, and enable custom services to manage various components of an IoT system, including controllers, data historians, and web interfaces.
 
-We gained practical experience with the __MQTT protocol__, learning how it enables real-time communication between devices. For instance, we used `mosquitto_pub` and `mosquitto_sub` commands to publish and subscribe to topics, allowing seamless data exchange in IoT systems.
+#### Technical Understanding
+* I now understand the structure and purpose of systemd service files, including key directives like `ExecStart`, `WorkingDirectory`, and `Restart`.
+* I gained practical knowledge of ensuring Python virtual environments are correctly referenced within service files, preventing dependency-related issues.
+* Troubleshooting errors with systemd commands like `sudo systemctl status` gave me a deeper understanding of debugging service-related problems.
 
-__Technical Understanding__
+#### Practical Skills
+*Configuring system-wide packages for compatibility (e.g., solving the matplotlib issue) taught me to identify and resolve dependency conflicts.
+* Automating startup processes through sudo systemctl enable ensures IoT applications reliably launch after reboots.
 
-We explored the paho-mqtt Python library, which simplifies writing and debugging MQTT client code. Through this, we implemented key methods like `on_connect` for connection setup and `on_message` for handling incoming messages.
+## What I believe I need to improve: 
 
-__Practical Skills__
+#### Debugging Systemd Services
+I struggled to identify issues when a service failed to start. While I eventually resolved them, I need to improve my ability to interpret systemd logs (`journalctl -u service_name`) to diagnose errors more effectively.
 
-We developed troubleshooting skills for establishing MQTT connections within secure network environments. This included configuring network settings, managing Wi-Fi constraints, and analyzing message flow using logging techniques.
-
-## What I believe we need to improve: 
-
-__Error Troubleshooting__
-
-We faced some challenges debugging connectivity issues when switching between networks. Improving my understanding of network configurations and interpreting logs will help resolve these problems more efficiently.
-
-__Efficiency in Writing Code__
-
-The Python scripts worked but were quite loaded. We aim to write more modular and reusable code by leveraging advanced debugging tools and improving coding practices.
+#### Managing Dependencies
+The need for a system-wide installation of `matplotlib` highlighted gaps in my understanding of managing Python environments. I plan to study best practices for handling dependencies, especially in mixed environments like virtual environments and system-wide installations.
 
 ## What the teacher could have said or done to make learning easier: 
 
-__Pre-Configured Tools__
+#### Provide Context for Common Issues
+Highlighting typical pitfalls (e.g., dependency conflicts or file permission errors) and how to address them would have helped me anticipate and resolve issues faster.
 
-Providing a pre-configured virtual tool with all required dependencies could have reduced time spent troubleshooting setup issues and allowed more focus on the core task.
+#### Pre-Built Examples
+Providing a pre-configured service file template for the lab’s specific applications would have allowed me to focus more on understanding its functionality instead of spending time on trial-and-error adjustments.
 
-__Contextual Examples__
+## What I could have done to make the learning easier: 
 
-Demonstrating how MQTT is applied in real-world scenarios, such as industrial automation or smart homes, would have made the concepts more relatable and engaging.
+#### Preparation
+Reviewing systemd documentation and understanding its core concepts beforehand would have made me more confident in creating and managing services. Additionally, revisiting Python virtual environment usage could have prevented the dependency conflict I encountered.
 
-## What we could have done to make the learning easier: 
-
-__Preparation__
-Reviewing the Linux commands and the paho-mqtt library documentation beforehand would have created a clearer starting point.
-
-__Incremental Testing:__
-
-Testing the program in smaller, incremental sections rather than it as a whole would have made it easier to isolate and address compound errors, as well as streamline the workflow.
-
-__Asking for Help:__
-
-Asking more questions to my peers and my teacher during the lab to clarify uncertainties in real time would have enhanced my comprehension of the activity.
+#### Experimentation
+Testing simpler services before tackling the IoT system components could have helped me build a stronger foundation for understanding systemd configuration.
 
 ## Other reflections: 
 
-__Adaptability__
+#### Adaptability
+This lab reinforced the importance of adaptability when facing unexpected issues like the `matplotlib` conflict. Problem-solving in a dynamic environment like IoT projects is a skill I am actively improving.
 
-Working around different networking constraints enhanced my adaptability, a critical skill for real life IoT projects which were created in varied environments and under different circumstances.
+#### Collaboration
+While this was an individual task, discussing challenges and solutions with peers provided valuable insights. Learning from others’ approaches broadened my perspective.
 
-__Collaboration__
-
-Collaborating with peers helped resolve issues more quickly, demonstrating the importance of teamwork in technical problem-solving.
-
-__Time Management__
-
-Planing and designated time outside the classroom for debugging is essential. In upcoming projects, I plan to reserve dedicated time slots for this purpose to avoid last-minute challenges.
+#### Attention to Detail
+Small errors in service files, such as typos in file paths or incorrect `ExecStart` commands, had significant impacts. This highlighted the need for meticulous attention to detail, a critical skill in both programming and system configuration.
 
 # Linux and Python Commands Learned:
 
 ## Linux Commands:
 
-**`mosquitto`**
- - **Purpose:** Starts the MQTT broker.
+* `sudo nano /etc/systemd/system/IoT_Controller.service` - Opens the Nano text editor with root privileges to edit the service file.
+* `sudo systemctl daemon-reload` - Reloads `systemd` to recognize changes made to service files. 
+* `sudo systemctl enable IoT_Controller.service` - Enables the IoT Controller service to start automatically at boot.
+* `sudo systemctl start IoT_Controller.service` - Starts the IoT Controller service manually without rebooting.
+* `sudo systemctl status IoT_Controller.service` - Checks the status of the service, including logs and errors.
+* `sudo apt-get install python3-matplotlib` - Installs the `matplotlib` package system-wide for Python.
 
-**`mosquitto_sub`** 
- - **Purpose:** Subscribes to an MQTT topic to receive messages.
-
-**`mosquitto_pub`** 
- - **Purpose:** Publishes messages to a specified MQTT topic.
-
-**`ifconfig`**
- - **Purpose:** Displays or configures network interfaces. Useful for checking IP addresses and network status.
-
-**`ping`**
- - **Purpose:** Tests connectivity between devices.
- - **Example:** `ping 192.168.1.1` checks if a device at that IP address is reachable.
-
-**`nano` and `vim`**
- - **Purpose:** Text editors for modifying scripts or configuration files directly in the terminal.
-
-**`chmod`**
- - **Purpose:** Changes file permissions.
- - **Example:** `chmod +x script.py` makes a Python script executable.
-
-**`systemctl`**
- - **Purpose:**  Controls system services.
- - **Example:** `systemctl restart mosquitto` restarts the MQTT broker service.
-
-**`top`**
- - **Purpose:**: Monitors system processes.
- - **What it does:** Displays real-time CPU and memory usage for system optimization.
 
 ## Python Commands (from the updated code):
 
-**`import paho.mqtt.client as mqtt`**
- - Imports the MQTT library to allow connection, subscription, and message publishing.
-
-**`client = mqtt.Client()`**
- - Creates an MQTT client object.
-
-**`client.connect(broker, port, keepalive)`**
- - Establishes a connection to the MQTT broker.
-
-**`client.subscribe("topic")`**
- - Subscribes to a topic to receive messages.
-
-**`client.publish("topic", message)`**
- - Publishes a message to a topic.
-
-**`client.loop_forever()`**
- - Keeps the client running to handle incoming messages.
-
-**`logging.basicConfig()`**
- - Configures logging to track events, useful for debugging.
-
-**`time.sleep(seconds)`**
- - Introduces a delay in execution, useful for timing message flows.
+* `ExecStart=/home/username/IoT_Controller/IoT/bin/python /home/username/IoT_Controller/IoT_Controller.py` - Specifies the command to execute the `IoT_Controller.py` script using the Python interpreter from a virtual environment.
+* `WorkingDirectory=/home/username/IoT_Controller/` - Sets the working directory for the script execution.
+* `Restart=always` - Configures the service to restart automatically if it crashes or stops unexpectedly.
+* `User=username` - Sets the user under which the service runs to manage permissions and secure the execution environment. 
 
 
 
