@@ -127,22 +127,51 @@ Planing and designated time outside the classroom for debugging is essential. In
 
 ##### These commands are crucial in setting up, running, and debugging the IoT system.
 
-## About the LIA:
+# About the LIA: DuckPen - Heating System - IoT Project
 
-Durring the lab time we tried to test the Arduino code I developped with the Rasberry Pi containing the IoT Controller code we had just updated. For some reason the Raspberry Pi just did not want to establish communication with the ESP32. Turns out the MiniUSB cable we were using was incapable of __transmitting__ DATA. 
+## Progress so Far
+We have successfully implemented the following features:
 
-Moreover, though I am very confident in my Arduino Programing Skills, I still have a lot to learn and to improve. I need do find a more efficient way to determine my inputs, outputs and variables because I forgot quite a few when I made the Arduino code.
+#### ESP32 Integration
 
-Here is a comprehensive list of objectives I bielieve we need to achive in order to complete our LIA Project.
+* The __ESP32__ reads temperature and light data using a DHT11 sensor and a photocell sensor.
+* LEDs indicate system states: red (high temperature), green (optimal temperature), blue (cold temperature), and yellow (heater activity).
 
-* Add a topic for the `heater` in our Python code.
-* For now, in the Arduino code, I have assigned the topic `nighttime` to be in charge of the White LED. Python code must be updated to reflect that.
-* Might use `daytime` topic to control the White LED durring daytime when __light value__ is LOW. Based on a 24H clock.
-* We must create a __Web Interface__??? based on the LIA project directions. (What is that???)
-* Add a __historian__.
-* Check and update the Green LED rules < and >.
-* New pins were added. Check and document.
-* Ask the teacher to clarify if the outputs are triggered by the ESP32 or should it have been by python??
-* **Idea:** We can 3d print parts for our project!
-* Add a flip switch. Hardware and Software.
-* We must update our schematic!
+#### MQTT Communication
+
+* The ESP32 communicates with the MQTT broker using the PubSubClient library.
+* Topics include:
+  * Temperature states: cage/temphot, cage/tempnorm, cage/tempcold.
+  * Light level: cage/nighttime.
+  * Heater control: cage/heater.
+
+#### Automation and Interactivity
+* Automated responses are triggered based on MQTT messages:
+  * LEDs toggle based on MQTT messages.
+  * The heater is controlled via MQTT commands, with visual feedback from a yellow LED.
+* Sensor data is periodically published to relevant topics, ensuring real-time updates.
+
+
+#### Challenges Encountered
+
+* Wi-Fi and Network Issues: Due to the restrictive school Wifi network, we had difficulty connecting the ESP32. Resolved by switching to the teacher's less restrictive network.
+* Sensor Calibration: Adjusted thresholds and added delays for accurate readings.
+* MQTT Debugging: Implemented reconnection logic to address intermittent disconnections.
+
+#### Areas for Improvement
+
+* Sensor Efficiency: Upgrade to more accurate sensors like the DHT22.
+* Code Optimization: Separate code into modular components for better maintainability.
+* Scalability: Expand to manage multiple cages with a hierarchical topic structure.
+
+#### Lessons Learned
+
+* Technical Skills: Enhanced understanding of embedded systems and networking.
+* Problem-Solving: Debugging taught persistence and systematic approaches.
+* Collaboration: Effective teamwork proved crucial in overcoming challenges.
+
+#### Next Lab
+
+* **Finalize** testing on a home network and tweek code accordingly.
+* **Document** the system by creating a user manual and technical report.
+* Prepare a **demonstration** showcasing real-time MQTT communication and system responsiveness.
