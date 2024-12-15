@@ -1,54 +1,48 @@
 
 # Reflection - Durring the Lab - IoT Controller
 
-## What I have learned: 
+## What we have learned: 
 
-This lab provided valuable insights into IoT systems and database integration. Specifically, we learned:
+__Topic-Specific Learning__
 
-* How to utilize the `paho.mqtt` library in Python to establish MQTT connections, subscribe to topics, and process incoming messages.
-* We learned how to install and verify the SQLite3 client on a Raspberry Pi, execute SQL commands to interact with a database, and set up a historian program to log MQTT messages in real-time. 
-* Techniques for creating database tables dynamically and storing incoming MQTT messages with relevant metadata, such as timestamps, topics, and payloads.
-* The importance of recording data systematically to analyze IoT system behavior and troubleshoot communication issues effectively.
-* Using Python’s `datetime` module to incorporate timestamps for temporal context in the logged data records.
-* Debugging techniques that ensure reliable message handling and seamless database operations.
+We gained practical experience with the __MQTT protocol__, learning how it enables real-time communication between devices. For instance, we used `mosquitto_pub` and `mosquitto_sub` commands to publish and subscribe to topics, allowing seamless data exchange in IoT systems.
 
-## What I believe I need to improve: 
+__Technical Understanding__
 
-__Error Handling:__
+We explored the paho-mqtt Python library, which simplifies writing and debugging MQTT client code. Through this, we implemented key methods like `on_connect` for connection setup and `on_message` for handling incoming messages.
 
-While implementing the historian, we relied on basic functions to handle MQTT messages and database interactions. However, the system lacks robust error handling, such as for cases when the database connection fails or malformed messages are received. Improving this aspect would make the application more reliable.
+__Practical Skills__
 
-__Performance Optimization:__
+We developed troubleshooting skills for establishing MQTT connections within secure network environments. This included configuring network settings, managing Wi-Fi constraints, and analyzing message flow using logging techniques.
 
-As the database grows, querying and inserting records might become slower. Understanding indexing and optimizing database operations could ensure scalability for larger datasets.
+## What I believe we need to improve: 
 
-__Data Visualization:__
+__Error Troubleshooting__
 
-Enhance my skills in creating dashboards or visual representations of MQTT data to make analysis more intuitive and actionable.
+We faced some challenges debugging connectivity issues when switching between networks. Improving my understanding of network configurations and interpreting logs will help resolve these problems more efficiently.
+
+__Efficiency in Writing Code__
+
+The Python scripts worked but were quite loaded. We aim to write more modular and reusable code by leveraging advanced debugging tools and improving coding practices.
 
 ## What the teacher could have said or done to make learning easier: 
 
-__Provide Clear Examples:__
+__Pre-Configured Tools__
 
-Sharing a simple example that integrates MQTT and SQLite could have accelerated the learning process and clarified concepts.
+Providing a pre-configured virtual tool with all required dependencies could have reduced time spent troubleshooting setup issues and allowed more focus on the core task.
 
-__Debugging Tools:__
+__Contextual Examples__
 
-Recommending tools like MQTT Explorer for monitoring MQTT traffic would have simplified troubleshooting and testing.
-
-__Discuss Best Practices:__
-
-Introducing industry-standard practices for IoT data logging and MQTT security, such as authentication and encryption, would have added depth to our understanding.
+Demonstrating how MQTT is applied in real-world scenarios, such as industrial automation or smart homes, would have made the concepts more relatable and engaging.
 
 ## What we could have done to make the learning easier: 
 
-__Better Preparation:__
-
-Reviewing documentation for MQTT and SQLite in Python prior to the lab could have provided a stronger foundation.
+__Preparation__
+Reviewing the Linux commands and the paho-mqtt library documentation beforehand would have created a clearer starting point.
 
 __Incremental Testing:__
 
-Testing the program in smaller, modular parts rather than as a whole would have made it easier to isolate and address errors.
+Testing the program in smaller, incremental sections rather than it as a whole would have made it easier to isolate and address compound errors, as well as streamline the workflow.
 
 __Asking for Help:__
 
@@ -56,48 +50,79 @@ Asking more questions to my peers and my teacher during the lab to clarify uncer
 
 ## Other reflections: 
 
-This lab emphasized the importance of bridging theoretical knowledge with practical applications. It highlighted areas where I need improvement, such as optimizing database operations and enhancing debugging skills. Additionally, the experience reinforced the value of systematic data documentation and analysis, which are critical in developing scalable IoT systems.
+__Adaptability__
 
-In the following labs, I plan to deepen my understanding of IoT protocols and focus on creating reliable, secure solutions for future projects.
+Working around different networking constraints enhanced my adaptability, a critical skill for real life IoT projects which were created in varied environments and under different circumstances.
+
+__Collaboration__
+
+Collaborating with peers helped resolve issues more quickly, demonstrating the importance of teamwork in technical problem-solving.
+
+__Time Management__
+
+Planing and designated time outside the classroom for debugging is essential. In upcoming projects, I plan to reserve dedicated time slots for this purpose to avoid last-minute challenges.
 
 # Linux and Python Commands Learned:
 
 ## Linux Commands:
-`mosquitto` - Starts the MQTT broker.
 
-`mosquitto_sub` - Subscribes to an MQTT topic to receive messages.
+**`mosquitto`**
+ - **Purpose:** Starts the MQTT broker.
 
-`mosquitto_pub` - Publishes messages to a specified MQTT topic.
+**`mosquitto_sub`** 
+ - **Purpose:** Subscribes to an MQTT topic to receive messages.
 
-`sqlite3` 
- - **Purpose**: Interacts with SQLite databases via the command line.
- - **What it does**: Enables creating, querying, and modifying database files.
+**`mosquitto_pub`** 
+ - **Purpose:** Publishes messages to a specified MQTT topic.
 
-`top`
- - **Purpose**: Monitors system processes.
- - **What it does**: Displays real-time CPU and memory usage for system optimization.
+**`ifconfig`**
+ - **Purpose:** Displays or configures network interfaces. Useful for checking IP addresses and network status.
+
+**`ping`**
+ - **Purpose:** Tests connectivity between devices.
+ - **Example:** `ping 192.168.1.1` checks if a device at that IP address is reachable.
+
+**`nano` and `vim`**
+ - **Purpose:** Text editors for modifying scripts or configuration files directly in the terminal.
+
+**`chmod`**
+ - **Purpose:** Changes file permissions.
+ - **Example:** `chmod +x script.py` makes a Python script executable.
+
+**`systemctl`**
+ - **Purpose:**  Controls system services.
+ - **Example:** `systemctl restart mosquitto` restarts the MQTT broker service.
+
+**`top`**
+ - **Purpose:**: Monitors system processes.
+ - **What it does:** Displays real-time CPU and memory usage for system optimization.
 
 ## Python Commands (from the updated code):
 
-`mqtt.Client()`
- - **Purpose**: Creates an MQTT client instance.
- - **What it does**: Initiates a connection with the MQTT broker.
+**`import paho.mqtt.client as mqtt`**
+ - Imports the MQTT library to allow connection, subscription, and message publishing.
 
-`client.subscribe()`
- - **Purpose**: Subscribes to an MQTT topic.
- - **What it does**: Tells the broker to send messages from a specific topic to the client.
+**`client = mqtt.Client()`**
+ - Creates an MQTT client object.
 
-`sqlite3.connect()`
- - **Purpose**: Connects to an SQLite database file.
- - **What it does**: Opens a database or creates one if it doesn’t exist.
+**`client.connect(broker, port, keepalive)`**
+ - Establishes a connection to the MQTT broker.
 
-`datetime.now().strftime()`
- - **Purpose**: Formats the current date and time.
- - **What it does**: Generates timestamps in a readable format for logging.
+**`client.subscribe("topic")`**
+ - Subscribes to a topic to receive messages.
 
-`cursor.execute()`
-- **Purpose**: Executes SQL commands in the database.
-- **What it does**: Allows querying, creating tables, or inserting data into the database.
+**`client.publish("topic", message)`**
+ - Publishes a message to a topic.
+
+**`client.loop_forever()`**
+ - Keeps the client running to handle incoming messages.
+
+**`logging.basicConfig()`**
+ - Configures logging to track events, useful for debugging.
+
+**`time.sleep(seconds)`**
+ - Introduces a delay in execution, useful for timing message flows.
+
 
 
 ##### These commands are crucial in setting up, running, and debugging the IoT system.
