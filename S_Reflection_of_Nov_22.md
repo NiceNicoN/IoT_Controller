@@ -1,165 +1,176 @@
-# Reflection - Lab 9 - IoT System Automated Startup
+# Reflection - Durring the Lab - IoT Controller - Lab 8
 
 ## What we have learned: 
 
-#### Topic-Specific Learning
-This lab introduced me to `systemd` as a tool for automating IoT system startups on Raspberry Pi devices. I learned how to create, configure, and enable custom services to manage various components of an IoT system, including controllers, data historians, and web interfaces.
+__Topic-Specific Learning__
 
-#### Technical Understanding
-* I now understand the structure and purpose of systemd service files, including key directives like `ExecStart`, `WorkingDirectory`, and `Restart`.
-* I gained practical knowledge of ensuring Python virtual environments are correctly referenced within service files, preventing dependency-related issues.
-* Troubleshooting errors with systemd commands like `sudo systemctl status` gave me a deeper understanding of debugging service-related problems.
+We gained practical experience with the __MQTT protocol__, learning how it enables real-time communication between devices. For instance, we used `mosquitto_pub` and `mosquitto_sub` commands to publish and subscribe to topics, allowing seamless data exchange in IoT systems.
 
-#### Practical Skills
-*Configuring system-wide packages for compatibility (e.g., solving the matplotlib issue) taught me to identify and resolve dependency conflicts.
-* Automating startup processes through sudo systemctl enable ensures IoT applications reliably launch after reboots.
+__Technical Understanding__
 
-## What I believe I need to improve: 
+We explored the paho-mqtt Python library, which simplifies writing and debugging MQTT client code. Through this, we implemented key methods like `on_connect` for connection setup and `on_message` for handling incoming messages.
 
-#### Debugging Systemd Services
-I struggled to identify issues when a service failed to start. While I eventually resolved them, I need to improve my ability to interpret systemd logs (`journalctl -u service_name`) to diagnose errors more effectively.
+__Practical Skills__
 
-#### Managing Dependencies
-The need for a system-wide installation of `matplotlib` highlighted gaps in my understanding of managing Python environments. I plan to study best practices for handling dependencies, especially in mixed environments like virtual environments and system-wide installations.
+We developed troubleshooting skills for establishing MQTT connections within secure network environments. This included configuring network settings, managing Wi-Fi constraints, and analyzing message flow using logging techniques.
+
+## What I believe we need to improve: 
+
+__Error Troubleshooting__
+
+We faced some challenges debugging connectivity issues when switching between networks. Improving my understanding of network configurations and interpreting logs will help resolve these problems more efficiently.
+
+__Efficiency in Writing Code__
+
+The Python scripts worked but were quite loaded. We aim to write more modular and reusable code by leveraging advanced debugging tools and improving coding practices.
 
 ## What the teacher could have said or done to make learning easier: 
 
-#### Provide Context for Common Issues
-Highlighting typical pitfalls (e.g., dependency conflicts or file permission errors) and how to address them would have helped me anticipate and resolve issues faster.
+__Pre-Configured Tools__
 
-#### Pre-Built Examples
-Providing a pre-configured service file template for the lab’s specific applications would have allowed me to focus more on understanding its functionality instead of spending time on trial-and-error adjustments.
+Providing a pre-configured virtual tool with all required dependencies could have reduced time spent troubleshooting setup issues and allowed more focus on the core task.
 
-## What I could have done to make the learning easier: 
+__Contextual Examples__
 
-#### Preparation
-Reviewing systemd documentation and understanding its core concepts beforehand would have made me more confident in creating and managing services. Additionally, revisiting Python virtual environment usage could have prevented the dependency conflict I encountered.
+Demonstrating how MQTT is applied in real-world scenarios, such as industrial automation or smart homes, would have made the concepts more relatable and engaging.
 
-#### Experimentation
-Testing simpler services before tackling the IoT system components could have helped me build a stronger foundation for understanding systemd configuration.
+## What we could have done to make the learning easier: 
+
+__Preparation__
+Reviewing the Linux commands and the paho-mqtt library documentation beforehand would have created a clearer starting point.
+
+__Incremental Testing:__
+
+Testing the program in smaller, incremental sections rather than it as a whole would have made it easier to isolate and address compound errors, as well as streamline the workflow.
+
+__Asking for Help:__
+
+Asking more questions to my peers and my teacher during the lab to clarify uncertainties in real time would have enhanced my comprehension of the activity.
 
 ## Other reflections: 
 
-#### Adaptability
-This lab reinforced the importance of adaptability when facing unexpected issues like the `matplotlib` conflict. Problem-solving in a dynamic environment like IoT projects is a skill I am actively improving.
+__Adaptability__
 
-#### Collaboration
-While this was an individual task, discussing challenges and solutions with peers provided valuable insights. Learning from others’ approaches broadened my perspective.
+Working around different networking constraints enhanced my adaptability, a critical skill for real life IoT projects which were created in varied environments and under different circumstances.
 
-#### Attention to Detail
-Small errors in service files, such as typos in file paths or incorrect `ExecStart` commands, had significant impacts. This highlighted the need for meticulous attention to detail, a critical skill in both programming and system configuration.
+__Collaboration__
+
+Collaborating with peers helped resolve issues more quickly, demonstrating the importance of teamwork in technical problem-solving.
+
+__Time Management__
+
+Planing and designated time outside the classroom for debugging is essential. In upcoming projects, I plan to reserve dedicated time slots for this purpose to avoid last-minute challenges.
 
 # Linux and Python Commands Learned:
 
 ## Linux Commands:
 
-* Opens the Nano text editor with root privileges to edit the service file.
-```
-sudo nano /etc/systemd/system/IoT_Controller.service
-```
-* Reloads `systemd` to recognize changes made to service files.
-```
-sudo systemctl daemon-reload
-```
-* Enables the IoT Controller service to start automatically at boot.
-```
-sudo systemctl enable IoT_Controller.service
-```
-* Starts the IoT Controller service manually without rebooting.
-```
-sudo systemctl start IoT_Controller.service
-```
-* Checks the status of the service, including logs and errors.
-```
-sudo systemctl status IoT_Controller.service
-```
-* Installs the `matplotlib` package system-wide for Python.
-```
-sudo apt-get install python3-matplotlib
-```
+**`mosquitto`**
+ - **Purpose:** Starts the MQTT broker.
 
+**`mosquitto_sub`** 
+ - **Purpose:** Subscribes to an MQTT topic to receive messages.
+
+**`mosquitto_pub`** 
+ - **Purpose:** Publishes messages to a specified MQTT topic.
+
+**`ifconfig`**
+ - **Purpose:** Displays or configures network interfaces. Useful for checking IP addresses and network status.
+
+**`ping`**
+ - **Purpose:** Tests connectivity between devices.
+ - **Example:** `ping 192.168.1.1` checks if a device at that IP address is reachable.
+
+**`nano` and `vim`**
+ - **Purpose:** Text editors for modifying scripts or configuration files directly in the terminal.
+
+**`chmod`**
+ - **Purpose:** Changes file permissions.
+ - **Example:** `chmod +x script.py` makes a Python script executable.
+
+**`systemctl`**
+ - **Purpose:**  Controls system services.
+ - **Example:** `systemctl restart mosquitto` restarts the MQTT broker service.
+
+**`top`**
+ - **Purpose:**: Monitors system processes.
+ - **What it does:** Displays real-time CPU and memory usage for system optimization.
 
 ## Python Commands (from the updated code):
 
-* Specifies the command to execute the `IoT_Controller.py` script using the Python interpreter from a virtual environment.
-```
-ExecStart=/home/username/IoT_Controller/IoT/bin/python/home/username/IoT_Controller/IoT_Controller.py
-```
-* Sets the working directory for the script execution.
-```
-WorkingDirectory=/home/username/IoT_Controller/
-```
-* Configures the service to restart automatically if it crashes or stops unexpectedly.
-```
-Restart=always
-```
-* Sets the user under which the service runs to manage permissions and secure the execution environment. 
-```
-User=username
-```
+**`import paho.mqtt.client as mqtt`**
+ - Imports the MQTT library to allow connection, subscription, and message publishing.
+
+**`client = mqtt.Client()`**
+ - Creates an MQTT client object.
+
+**`client.connect(broker, port, keepalive)`**
+ - Establishes a connection to the MQTT broker.
+
+**`client.subscribe("topic")`**
+ - Subscribes to a topic to receive messages.
+
+**`client.publish("topic", message)`**
+ - Publishes a message to a topic.
+
+**`client.loop_forever()`**
+ - Keeps the client running to handle incoming messages.
+
+**`logging.basicConfig()`**
+ - Configures logging to track events, useful for debugging.
+
+**`time.sleep(seconds)`**
+ - Introduces a delay in execution, useful for timing message flows.
+
+
 
 ##### These commands are crucial in setting up, running, and debugging the IoT system.
 
-# Final LIA Reflection: DuckPen - Heating System - IoT Project
+# About the LIA: DuckPen - Heating System - IoT Project
 
-## Project Overview
-In this project, we built an IoT-based control system using an ESP32 microcontroller, the MQTT protocol, and a variety of sensors and actuators. The system was designed to monitor environmental parameters such as temperature and light intensity, and to control devices like heaters and fans accordingly. The primary goal was to ensure reliable communication between components and enable real-time device control using MQTT.
+## Progress so Far
+We have successfully implemented the following features:
 
-## Successes and Achievements
+#### ESP32 Integration
 
-### Demonstration
-We have successfully implemented and demostrated the following features:
+* The __ESP32__ reads temperature and light data using a DHT11 sensor and a photocell sensor.
+* LEDs indicate system states: red (high temperature), green (optimal temperature), blue (cold temperature), and yellow (heater activity).
 
-#### System Integration
-Integrating the ESP32 with MQTT was a significant accomplishment. The system now collects environmental data, processes it, and responds to remote commands in real time. This integration is the backbone of the project, enabling seamless communication between devices and users.
+#### MQTT Communication
 
-#### Remote Device Control
-A major success was achieving remote control of actuators via MQTT. By publishing messages to topics like `mqtt_hot_topic` and `mqtt_cold_topic`, we could activate or deactivate the heater and fan. This enabled real-time system feedback, making it interactive and user-friendly.
+* The ESP32 communicates with the MQTT broker using the PubSubClient library.
+* Topics include:
+  * Temperature states: cage/temphot, cage/tempnorm, cage/tempcold.
+  * Light level: cage/nighttime.
+  * Heater control: cage/heater.
 
-#### Continuous Data Monitoring
-We implemented a periodic data publishing mechanism that sent sensor readings every three seconds. This provided a steady stream of information about temperature, light levels, and system status, offering valuable insights for system optimization.
+#### Automation and Interactivity
+* Automated responses are triggered based on MQTT messages:
+  * LEDs toggle based on MQTT messages.
+  * The heater is controlled via MQTT commands, with visual feedback from a yellow LED.
+* Sensor data is periodically published to relevant topics, ensuring real-time updates.
 
-## Areas for Improvement
-#### Error Handling and Robustness
-While the system performs well under normal conditions, it could be improved with better error handling. Adding validations for extreme sensor readings and implementing fail-safes like watchdog timers for MQTT reconnection would enhance its robustness.
 
-#### Security Enhancements
-Currently, MQTT communication lacks encryption, making it vulnerable to potential breaches. Adding TLS (Transport Layer Security) would secure data transmission and improve system reliability for real-world applications.
+#### Challenges Encountered
 
-#### Scalability
-The system is currently designed for a limited number of sensors and actuators. Scaling up will require more sophisticated control logic, such as event-driven programming or advanced state management, to maintain performance and usability.
+* Wi-Fi and Network Issues: Due to the restrictive school Wifi network, we had difficulty connecting the ESP32. Resolved by switching to the teacher's less restrictive network.
+* Sensor Calibration: Adjusted thresholds and added delays for accurate readings.
+* MQTT Debugging: Implemented reconnection logic to address intermittent disconnections.
 
-## Teamwork and Collaboration
-Working as a team was an enriching experience. Each member brought unique skills, enabling us to address challenges effectively and deliver a functional, well-rounded system.
+#### Areas for Improvement
 
-#### Task Division
-We divided tasks based on individual strengths: some focused on hardware integration and sensor handling, while others worked on MQTT broker setup and communication. This parallel approach sped up development and ensured efficient progress across all areas.
+* Sensor Efficiency: Upgrade to more accurate sensors like the DHT22.
+* Code Optimization: Separate code into modular components for better maintainability.
+* Scalability: Expand to manage multiple cages with a hierarchical topic structure.
 
-#### Communication and Documentation
-Regular team meetings helped address challenges and make critical design decisions. We documented progress in shared files, ensuring everyone stayed informed and redundancy was avoided.
+#### Lessons Learned
 
-#### Collaborative Troubleshooting
-Debugging was a collective effort. Challenges like MQTT connectivity or actuator control were resolved through brainstorming and teamwork, which not only improved the system but also deepened our understanding of IoT technologies.
+* Technical Skills: Enhanced understanding of embedded systems and networking.
+* Problem-Solving: Debugging taught persistence and systematic approaches.
+* Collaboration: Effective teamwork proved crucial in overcoming challenges.
 
-For future projects, we aim to incorporate more structured planning and time management to further streamline collaboration.
+#### Next Lab
 
-## Learning Experience
-This project provided valuable insights into IoT systems, particularly in sensor integration, real-time communication, and actuator control. Key takeaways include:
-
-* Setting up and utilizing MQTT for efficient device communication.
-* Processing sensor data and responding to real-time environmental changes.
-* Addressing connectivity and reliability challenges with ESP32 and MQTT.
-* Refactoring code to manage increasing system complexity.
-
-Collaborating with the team also enhanced both my technical expertise and interpersonal skills, allowing us to learn from one another’s strengths.
-
-## Future Enhancements
-Looking ahead, we plan to:
-
-* **Integrate Cloud Platforms:** Using services like AWS or Google Cloud for centralized monitoring and control, enabling remote access from anywhere.
-* **Develop a Mobile App:** Creating a mobile interface for easier and more intuitive system control.
-* **Incorporate Machine Learning:** Adding predictive capabilities to optimize system performance based on trends in environmental data.
-
-## Conclusion
-This project was an excellent opportunity to apply IoT concepts in a practical setting. By integrating the ESP32 with MQTT and various sensors, we created a functional, interactive system. The challenges we faced helped us grow both technically and as a team, and the system’s scalability and adaptability offer exciting potential for future enhancements.
-
+* **Finalize** testing on a home network and tweek code accordingly.
+* **Document** the system by creating a user manual and technical report.
+* Prepare a **demonstration** showcasing real-time MQTT communication and system responsiveness.
