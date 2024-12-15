@@ -33,13 +33,11 @@ I also think that teamwork is great! Even though not everyone has their RPIs, we
 
 ## Python Commands (from the updated code):
 
-`paho.mqtt.client as mqtt`: Imports the MQTT client library, enabling the Python script to connect to an MQTT broker.
+`time.time()` - Retrieves the current time in seconds, which we use to timestamp each message entry in the log, allowing us to track recent activity.
 
-`client.loop_forever()`: Keeps the MQTT client running, continuously listening for messages and triggering events based on the data received.
+`.append()` - Adds entries to lists. Here, it allows us to log new messages in the message_log.
 
 `try...except`: Used for error handling when parsing MQTT messages, ensuring that the system doesn’t crash if unexpected data is received.
-
-`client.publish(topic, message)`: Sends an MQTT message to a specific topic, triggering actions in other connected devices based on the rules defined.
 
 ##### These commands are crucial in setting up, running, and debugging the IoT system.
 
