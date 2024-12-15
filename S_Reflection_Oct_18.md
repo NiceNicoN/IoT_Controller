@@ -25,21 +25,21 @@ I also think that teamwork is great! Even though not everyone has their RPIs, we
 # Linux and Python Commands Learned:
 
 ## Linux Commands:
-`sudo apt install mosquitto`: Installs the Mosquitto MQTT broker, allowing the Raspberry Pi to handle MQTT communications.
+`sudo apt install mosquitto` - Installs the Mosquitto MQTT broker, allowing the Raspberry Pi to handle MQTT communications.
 
-`mosquitto_sub -h localhost -t "#" -v`: Subscribes to all MQTT topics on the local broker, helping to monitor messages in real time.
+`mosquitto_sub -h localhost -t "#" -v` - Subscribes to all MQTT topics on the local broker, helping to monitor messages in real time.
 
-`mosquitto_pub -h localhost -t "topic" -m "message"`: Publishes an MQTT message to a specific topic, simulating a sensor or device.
+`mosquitto_pub -h localhost -t "topic" -m "message"` - Publishes an MQTT message to a specific topic, simulating a sensor or device.
 
 ## Python Commands (from the updated code):
 
-`paho.mqtt.client as mqtt`: Imports the MQTT client library, enabling the Python script to connect to an MQTT broker.
+`paho.mqtt.client as mqtt` - Imports the MQTT client library, enabling the Python script to connect to an MQTT broker.
 
-`client.loop_forever()`: Keeps the MQTT client running, continuously listening for messages and triggering events based on the data received.
+`client.loop_forever()` - Keeps the MQTT client running, continuously listening for messages and triggering events based on the data received.
 
-`try...except`: Used for error handling when parsing MQTT messages, ensuring that the system doesn’t crash if unexpected data is received.
+`try...except` - Used for error handling when parsing MQTT messages, ensuring that the system doesn’t crash if unexpected data is received.
 
-`client.publish(topic, message)`: Sends an MQTT message to a specific topic, triggering actions in other connected devices based on the rules defined.
+`client.publish(topic, message)` - Sends an MQTT message to a specific topic, triggering actions in other connected devices based on the rules defined.
 
 ##### These commands are crucial in setting up, running, and debugging the IoT system.
 
