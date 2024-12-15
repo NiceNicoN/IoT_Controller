@@ -26,9 +26,13 @@ I also think that teamwork is great! Even though not everyone has their RPIs, we
 # Linux and Python Commands Learned:
 
 ## Linux Commands:
-`sudo apt install mosquitto mosquitto-clients` : This command installs the Mosquitto MQTT broker and client tools on the Raspberry Pi, allowing for local MQTT communication.
+`sudo apt install mosquitto mosquitto-clients`
+
+This command installs the Mosquitto MQTT broker and client tools on the Raspberry Pi, allowing for local MQTT communication.
       
-`systemctl start mosquitto` : Starts the Mosquitto MQTT broker service, enabling the system to handle MQTT messaging.
+`systemctl start mosquitto`
+
+Starts the Mosquitto MQTT broker service, enabling the system to handle MQTT messaging.
 
 ## Python Commands (from the updated code):
 
